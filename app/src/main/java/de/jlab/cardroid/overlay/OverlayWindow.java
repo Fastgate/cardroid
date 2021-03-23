@@ -79,6 +79,8 @@ public class OverlayWindow implements CarSystem.ChangeListener<ClimateControl> {
         SeekArc fanDial;
         TextView fanChangeText;
         OverlayToggleButton autoButton;
+        OverlayToggleButton autoFanButton;
+        OverlayToggleButton SteeringHeatButton;
 
         SeekArc temperatureDial;
         TextView temperatureText;
@@ -138,6 +140,8 @@ public class OverlayWindow implements CarSystem.ChangeListener<ClimateControl> {
         viewHolder.fanChangeText = (TextView)viewHolder.rootView.findViewById(R.id.fanChangeText);
         viewHolder.fanDial = (SeekArc)viewHolder.rootView.findViewById(R.id.fanBar);
         viewHolder.autoButton = (OverlayToggleButton)viewHolder.rootView.findViewById(R.id.autoButton);
+        viewHolder.autoFanButton = (OverlayToggleButton)viewHolder.rootView.findViewById(R.id.autoFanButton);
+        viewHolder.SteeringHeatButton = (OverlayToggleButton)viewHolder.rootView.findViewById(R.id.SteeringHeatButton);
 
         viewHolder.temperatureDial = (SeekArc)viewHolder.rootView.findViewById(R.id.temperatureBar);
         viewHolder.temperatureText = (TextView)viewHolder.rootView.findViewById(R.id.temperatureText);
@@ -192,6 +196,12 @@ public class OverlayWindow implements CarSystem.ChangeListener<ClimateControl> {
                     case R.id.autoButton:
                         climateControl.pushAutoButton();
                         break;
+                    case R.id.autoFanButton:
+                        climateControl.pushAutoFanButton();
+                        break;
+                    case R.id.SteeringHeatButton:
+                        climateControl.pushSteeringHeatButton();
+                        break;
                     case R.id.acButton:
                         climateControl.pushAcButton();
                         break;
@@ -204,6 +214,8 @@ public class OverlayWindow implements CarSystem.ChangeListener<ClimateControl> {
         viewHolder.recirculationButton.setOnClickListener(buttonListener);
         viewHolder.modeButton.setOnClickListener(buttonListener);
         viewHolder.autoButton.setOnClickListener(buttonListener);
+        viewHolder.autoFanButton.setOnClickListener(buttonListener);
+        viewHolder.SteeringHeatButton.setOnClickListener(buttonListener);
         viewHolder.acButton.setOnClickListener(buttonListener);
 
         // Init events
@@ -313,7 +325,7 @@ public class OverlayWindow implements CarSystem.ChangeListener<ClimateControl> {
                 WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN |
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT);
-        params.gravity = Gravity.TOP | Gravity.CENTER_HORIZONTAL;
+        params.gravity = Gravity.LEFT | Gravity.CENTER;
 
         return params;
     }
@@ -338,7 +350,7 @@ public class OverlayWindow implements CarSystem.ChangeListener<ClimateControl> {
                 String fanText          = String.format(Locale.getDefault(), "%s", fanLevel);
 
                 viewHolder.mainText.setText(temperatureText);
-                viewHolder.mainFanIcon.setProgress(Math.round(fanLevel / (float)OverlayWindow.this.maxFanLevel * 300));
+                viewHolder.mainFanIcon.setProgress(Math.round(fanLevel / (float) OverlayWindow.this.maxFanLevel * 300));
 
                 viewHolder.offButton.setState(!isOff);
                 viewHolder.wshButton.setState(system.isWindshieldHeating());
@@ -360,6 +372,8 @@ public class OverlayWindow implements CarSystem.ChangeListener<ClimateControl> {
                     viewHolder.fanDial.setProgress(Math.max(0, fanLevel));
                 }
                 viewHolder.autoButton.setState(system.isAuto());
+                viewHolder.autoFanButton.setState(system.isFanAuto());
+                viewHolder.SteeringHeatButton.setState(system.isSteeringHeat());
 
                 if (!trackingTemp) {
                     viewHolder.temperatureDial.setProgress((int) ((temperature - OverlayWindow.this.minTemp) * 2));

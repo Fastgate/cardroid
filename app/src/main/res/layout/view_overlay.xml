@@ -19,6 +19,7 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="300dp"
             android:layout_marginBottom="8dp">
 
             <android.support.v7.widget.AppCompatImageView
@@ -301,10 +302,11 @@
         </LinearLayout>
 
         <android.support.v7.widget.CardView
-            android:layout_width="96dp"
+            android:layout_width="wrap_content"
             android:layout_height="96dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="-24dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="-08dp"
             android:elevation="12dp"
             seekarc:cardBackgroundColor="@color/colorOverlayItemBg"
             seekarc:cardCornerRadius="48dp"
@@ -315,7 +317,45 @@
                 android:layout_width="96dp"
                 android:layout_height="96dp"
                 android:layout_gravity="top|start"
-                overlaytogglebutton:src="@drawable/ic_cc_auto"/>
+                overlaytogglebutton:src="@drawable/ic_cc_auto" />
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="-88dp"
+            android:elevation="12dp"
+            seekarc:cardBackgroundColor="@color/colorOverlayItemBg"
+            seekarc:cardCornerRadius="48dp"
+            seekarc:cardElevation="12dp">
+
+            <de.jlab.cardroid.overlay.OverlayToggleButton
+                android:id="@+id/SteeringHeatButton"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="top|start"
+                overlaytogglebutton:src="@drawable/ic_heatedsteering_1" />
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="clip_horizontal|right"
+            android:layout_marginTop="-95dp"
+            android:layout_marginEnd="150dp"
+            android:elevation="12dp"
+            seekarc:cardBackgroundColor="@color/colorOverlayItemBg"
+            seekarc:cardCornerRadius="48dp"
+            seekarc:cardElevation="12dp">
+
+            <de.jlab.cardroid.overlay.OverlayToggleButton
+                android:id="@+id/autoFanButton"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="top|start"
+                overlaytogglebutton:src="@drawable/ic_cc_auto" />
         </android.support.v7.widget.CardView>
 
     </LinearLayout>
@@ -324,8 +364,9 @@
         android:id="@+id/toggleButton"
         android:layout_width="96dp"
         android:layout_height="96dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="8dp"
+        android:layout_gravity="center|left"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="0dp"
         android:elevation="6dp"
         app:cardBackgroundColor="@color/colorOverlayItemBg"
         app:cardCornerRadius="48dp"
@@ -341,7 +382,7 @@
             android:layout_gravity="center_vertical|center_horizontal"
             android:max="360"
             android:progress="0"
-            android:progressDrawable="@drawable/ic_overlay_progress"/>
+            android:progressDrawable="@drawable/ic_overlay_progress" />
 
         <TextView
             android:id="@+id/mainText"
@@ -351,7 +392,7 @@
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </android.support.v7.widget.CardView>
 
 </FrameLayout>

@@ -6,6 +6,8 @@ public class ClimateControl extends ManageableCarSystem {
 
     private boolean isAcOn = false;
     private boolean isAuto = false;
+    private boolean isFanAuto = false;
+    private boolean isSteeringHeat = false;
     private boolean isRecirculation = false;
     private boolean isWindshieldHeating = false;
     private boolean isRearWindowHeating = false;
@@ -21,6 +23,8 @@ public class ClimateControl extends ManageableCarSystem {
         this.temperature = packet.readByte(2) / 2f;
 
         this.isAuto = packet.readFlag(0, 6);
+        this.isFanAuto = packet.readFlag(3, 1);
+        this.isSteeringHeat = packet.readFlag(3,2);
         this.isAcOn = packet.readFlag(0, 7);
         this.isRecirculation = packet.readFlag(0, 0);
         this.isWindshieldHeating = packet.readFlag(0, 2);
@@ -38,6 +42,12 @@ public class ClimateControl extends ManageableCarSystem {
     public boolean isAuto() {
         return isAuto;
     }
+
+    public boolean isFanAuto() {
+        return isFanAuto;
+    }
+
+    public boolean isSteeringHeat() { return isSteeringHeat; }
 
     public boolean isRecirculation() {
         return isRecirculation;
@@ -82,6 +92,13 @@ public class ClimateControl extends ManageableCarSystem {
 
     public void pushAutoButton() {
         this.manage(CarSystemEvent.CC_AUTO_BUTTON);
+    }
+
+    public void pushAutoFanButton() {
+        this.manage(CarSystemEvent.CC_AUTO_FAN_BUTTON);
+    }
+
+    public void pushSteeringHeatButton() { this.manage(CarSystemEvent.CC_STEERINGHEAT_BUTTON);
     }
 
     public void pushRecirculationButton() {
